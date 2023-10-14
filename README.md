@@ -1,6 +1,6 @@
 # Web Development Project 5 - *Name of App Here*
 
-Submitted by: **Your Name Here**
+Submitted by: Joey Whitehead
 
 This web app: **insert description**
 
