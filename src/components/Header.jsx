@@ -1,9 +1,14 @@
+import Nav from "./Nav"
 
 // Header - the top part of the website containing the title and logo
+// Parent of Nav
 const Header = () => {
     return (
         <>
-            <div>Header</div>
+            <section className="bg-red-900">
+                <h1 className="hero hero-content">WeatherReport 🤓</h1>
+                <Nav />
+            </section>
         </>
     )
 }

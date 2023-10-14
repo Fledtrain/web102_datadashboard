@@ -3,7 +3,11 @@
 const Nav = () => {
     return (
         <>
-            <div>Nav</div>
+            <section className="">
+                <button className="btn btn-ghost   flex">🛖Dashboard</button>
+                <button className="btn btn-ghost flex">🔍Search</button>
+                <button className="btn btn-ghost flex">🆘About</button>
+            </section>
         </>
     )
 }

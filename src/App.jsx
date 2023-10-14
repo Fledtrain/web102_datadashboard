@@ -1,15 +1,20 @@
 import './App.css'
+
 import Header from './components/Header'
-import Nav from './components/Nav'
+import List from './components/List'
 
 function App() {
 
-
   return (
     <>
-      <Nav />
-      <Header />
-      <h1 className=''>Hello</h1>
+      <div className='flex'>
+        <section className='flex p-4 '>
+          <Header />
+        </section>
+        <section className='flex p-12 '>
+          <List />
+        </section>
+      </div>
     </>
   )
 }
