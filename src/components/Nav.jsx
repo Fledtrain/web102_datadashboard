@@ -4,9 +4,9 @@ const Nav = () => {
     return (
         <>
             <section className="">
-                <button className="btn btn-ghost   flex">🛖Dashboard</button>
-                <button className="btn btn-ghost flex">🔍Search</button>
-                <button className="btn btn-ghost flex">🆘About</button>
+                <button className="btn btn-ghost btn-wide flex">🛖Dashboard</button>
+                <button className="btn btn-ghost btn-wide flex">🔍Search</button>
+                <button className="btn btn-ghost btn-wide flex">🆘About</button>
             </section>
         </>
     )
