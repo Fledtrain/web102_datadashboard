@@ -1,6 +1,4 @@
 import './App.css'
-import Card from './components/Card'
-
 import Header from './components/Header'
 import List from './components/List'
 
@@ -15,7 +13,6 @@ function App() {
         <section className='flex p-4 '>
           <List />
         </section>
-        
       </div>
     </>
   )
