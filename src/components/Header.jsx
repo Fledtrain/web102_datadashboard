@@ -5,7 +5,7 @@ import Nav from "./Nav"
 const Header = () => {
     return (
         <>
-            <section className="bg-red-900">
+            <section className="hero-overlay">
                 <h1 className="hero hero-content">WeatherReport 🤓</h1>
                 <Nav />
             </section>
