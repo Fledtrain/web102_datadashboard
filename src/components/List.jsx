@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import Card from "./Card"
 
-const API_KEY = import.meta.env.VITE_API_KEY
+const API_KEY = import.meta.env.VITE_BACKUP_API_KEY
 // List - a box container that stores a continuous group of information
 const List = () => {
     const [form, setForm] = useState([])
@@ -10,11 +10,10 @@ const List = () => {
 
     // For parameters
     const [city, setCity] = useState("Raleigh");
+    const [state, setState] = useState("NC");
     const [country, setCountry] = useState("US");
     const [units, setUnits] = useState("M")
-
     const [sunset, setSunset] = useState('');
-    // Converting Celsius to Fahrenheit (C × 9/5) + 32 = F
 
     // console.log(data !== "")
     // console.log(data)
@@ -22,7 +21,7 @@ const List = () => {
     // console.log(data?.app_temp)
     // console.log(data?.uv)
     // console.log(data?.weather.description)
-    if (data) { console.log(JSON.stringify(data.city_name)) }
+    // if (data) { console.log(JSON.stringify(data.city_name)) }
     // console.log(Object.values(data)?.map((item) => {
     //     console.log(item.city_name, item.app_temp, item.uv, item.weather.description);
     // }));
@@ -41,13 +40,14 @@ const List = () => {
         const fetchWeather = async () => {
             const res = await fetch(`https://api.weatherbit.io/v2.0/current?&city=${form[0]}&units=${form[1]}&key=${API_KEY}`)
             const data = await res.json();
-            setData(data.data[0]);
-            setCountry(data.country_code);
-            setSunset(data.sunset);
+            setData(data?.data[0]);
+            setCountry(data?.data[0].country_code);
+            setSunset(data?.data[0].sunset);
+            setState(data?.data[0].state_code)
             setLoading(false);
         }
 
-        // fetchWeather()
+        fetchWeather()
     }, [form])
 
     return (
@@ -82,30 +82,36 @@ const List = () => {
                             </p> :
                             <button
                                 className="btn" onClick={submit}
-                            >Search.</button>}
+                            >Search</button>}
                     </form>
                     <div>
                         <table className="table mt-5">
                             <thead className="bg-neutral text-white text-center" >
                                 <tr>
-                                    <th className="">Station⌛</th>
-                                    <th className="">Feels like Temperature🔥</th>
-                                    <th className="">Elevation Angle💨</th>
-                                    <th className="">Latitude🌌</th>
+                                    <th>State 🗿</th>
+                                    <th>Station⌛</th>
+                                    <th>Feels like Temperature🔥</th>
+                                    <th>Elevation Angle💨</th>
+                                    <th>Weather🌌</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {data ?
                                     <tr className="text-center">
-                                        <td className="">{data?.station}</td>
-                                        <td className="">{data?.app_temp} {units} unit</td>
-                                        <td className="">{data?.uv}</td>
-                                        <td className="">{data?.weather.description}</td>
+                                        <td>{state}</td>
+                                        <td>{data?.station}</td>
+                                        <td>{data?.app_temp}
+                                            {units === "M" && <> Celsius</>}
+                                            {units === "I" && <> Fahrenheit</>}
+                                            {units === "S" && <> Kelvin</>}
+                                        </td>
+                                        <td>{data?.elev_angle}</td>
+                                        <td>{data?.weather.description}</td>
                                     </tr> : <tr className="text-center">
-                                        <td className="">Fill</td>
-                                        <td className="">In {units} unit</td>
-                                        <td className="">Data </td>
-                                        <td className="">Above</td>
+                                        <td>Fill</td>
+                                        <td>In {units} unit</td>
+                                        <td>Data </td>
+                                        <td>Above</td>
                                     </tr>
                                 }
                             </tbody>
