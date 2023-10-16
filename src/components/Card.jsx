@@ -1,6 +1,6 @@
 
 // Card - a box containers that hold pieces of information
-const Card = () => {
+const Card = ({ children, city, country, sunset }) => {
     return (
         <>
             {/* <section className="flex flex-col p-5 hero-overlay card-body">
@@ -9,8 +9,8 @@ const Card = () => {
             </section> */}
             <section className="card w-96 bg-neutral text-neutral-content">
                 <div className="card-body items-center">
-                    <h2 className="card-title">Card ex</h2>
-                    <p>Temp</p>
+                    <h2 className="card-title">{children}</h2>
+                    <p>{city}{country}{sunset}</p>
                 </div>
             </section>
         </>

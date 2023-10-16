@@ -10,9 +10,10 @@ const List = () => {
 
     // For parameters
     const [city, setCity] = useState("Raleigh");
+    const [country, setCountry] = useState("US");
     const [units, setUnits] = useState("M")
 
-    const [temp, setTemp] = useState(0);
+    const [sunset, setSunset] = useState('');
     // Converting Celsius to Fahrenheit (C × 9/5) + 32 = F
 
     // console.log(data !== "")
@@ -39,9 +40,11 @@ const List = () => {
     useEffect(() => {
         const fetchWeather = async () => {
             const res = await fetch(`https://api.weatherbit.io/v2.0/current?&city=${form[0]}&units=${form[1]}&key=${API_KEY}`)
-            const data = await res.json()
-            setData(data.data[0])
-            setLoading(false)
+            const data = await res.json();
+            setData(data.data[0]);
+            setCountry(data.country_code);
+            setSunset(data.sunset);
+            setLoading(false);
         }
 
         // fetchWeather()
@@ -49,12 +52,12 @@ const List = () => {
 
     return (
         <>
-            <section className="Temp">
-                <section className='flex p-4'>
+            <section className="">
+                <section className='p-4'>
                     <div className='flex space-x-4'>
-                        <Card />
-                        <Card />
-                        <Card />
+                        <Card city={city}>City</Card>
+                        <Card country={country}>Country</Card>
+                        <Card sunset={sunset}>Sunset</Card>
                     </div>
                 </section>
                 <section className="">
