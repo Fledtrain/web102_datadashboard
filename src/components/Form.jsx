@@ -1,4 +1,11 @@
 /* eslint-disable react/prop-types */
+
+/** Form Component to search city and set Temperature Unit
+ * @param {function} search - function to search city
+ * @param {string} setUnits - state to set Temperature Unit
+ * @param {string} laoding  - state to set loading
+ * @param {string} submit - function to submit form
+ */
 const Form = ({ search, setUnits, loading, submit }) => {
     return (
         <>
@@ -23,9 +30,8 @@ const Form = ({ search, setUnits, loading, submit }) => {
                     </p> :
                     <button
                         className="btn btn-xs sm:btn-md" onClick={submit}
-                    >Search...</button>} 
+                    >Search...</button>}
             </form>
-
         </>
     )
 }

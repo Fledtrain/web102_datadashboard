@@ -27,10 +27,18 @@ const List = () => {
     //     console.log(item.city_name, item.app_temp, item.uv, item.weather.description);
     // }));
 
+    /** Searches for city
+     * @param {string} e - event from the input field
+     * @returns {string} city - city name
+     */
     const search = (e) => {
         e.preventDefault()
         setCity(e.target.value)
     }
+    /** Submits the form
+     * @param {string} e - event from the select field 
+     * @returns {Array} updated form - city and units
+     */
     const submit = (e) => {
         e.preventDefault()
         setLoading(true)
@@ -38,6 +46,10 @@ const List = () => {
     }
 
     useEffect(() => {
+        /** Fetches weather data from the API
+         * @async
+         * @returns {Object} data - weather data
+         */
         const fetchWeather = async () => {
             const res = await fetch(`https://api.weatherbit.io/v2.0/current?&city=${form[0]}&units=${form[1]}&key=${API_KEY}`)
             const data = await res.json();
@@ -67,7 +79,7 @@ const List = () => {
                         setUnits={setUnits}
                         loading={loading}
                         submit={submit} />
-                    <div className="">
+                    <div>
                         <table className="table sm:table-md mt-5">
                             <thead className="bg-neutral text-white text-center" >
                                 <tr>

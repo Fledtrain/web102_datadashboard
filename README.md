@@ -4,7 +4,7 @@ Submitted by: Joey Whitehead
 
 This web app: WeatherReporter App utilizes the https://www.weatherbit.io/ API to fetch weather reports throughout the global and display them in a beautiful table. Just enter the city you want and the app will fetch the weather report for you. You can filter the data by city, unit temperature!
 
-Time spent: **X** hours spent in total
+Time spent: 8 hours spent in total
 
 ## Required Features
 
@@ -13,7 +13,7 @@ The following **required** functionality is completed:
 - [x] **The list displays a list of data fetched using an API call**
 - [x] **Data uses the useEffect React hook and async/await syntax**
 - [x] **The app dashboard includes at least three summary statistics about the data such as**
-- [x] _City, Country, Sunset Time, Station, Temperature, Elevation Angle, Weather_
+- [x] _City, Country, Sunset Time, Station, Temperature, Elevation Angle and Weather_
 - [x] **A search bar allows the user to search for an item in the fetched data**
 - [x] **Multiple different filters (2+) allow the user to filter items in the database by specified categories**
 
@@ -25,7 +25,8 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you added to improve the site's functionality!
+- [x] Added a beautiful table to display the data
+- [x] Added a loading spinner to display while the data is being fetched
 
 ## Video Walkthrough
 
@@ -37,7 +38,7 @@ GIF created with LICEcap
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+I had trouble with the API call and getting the data to display in the table but I figured out how to do it, by saving it in state.
 
 ## License
 
