@@ -9,7 +9,7 @@ const Form = ({ search, setUnits, loading, submit }) => {
                     className="input input-bordered input-sm sm:input-md sm:w-full sm:max-w-xs  sm:mr-2"
                     onChange={(e) => search(e)} />
                 <select
-                    className="select select-bordered select-sm sm:select-md sm:w-full sm:max-w-xs sm:mr-2"
+                    className="select select-bordered select-xs sm:select-md sm:w-full max-w-xs sm:mr-2"
                     onChange={(e) => setUnits(e.target.value)}>
                     <option value="DEFAULT" disabled selected>What Unit Temperature?</option>
                     <option value="M">Metric</option>

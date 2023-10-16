@@ -67,8 +67,8 @@ const List = () => {
                         setUnits={setUnits}
                         loading={loading}
                         submit={submit} />
-                    <div>
-                        <table className="table mt-5">
+                    <div className="">
+                        <table className="table sm:table-md mt-5">
                             <thead className="bg-neutral text-white text-center" >
                                 <tr>
                                     <th>State 🗿</th>
