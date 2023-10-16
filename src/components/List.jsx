@@ -48,7 +48,7 @@ const List = () => {
             setLoading(false);
         }
 
-        // fetchWeather()
+        fetchWeather()
     }, [form])
 
     return (
