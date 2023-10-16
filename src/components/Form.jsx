@@ -23,7 +23,7 @@ const Form = ({ search, setUnits, loading, submit }) => {
                     </p> :
                     <button
                         className="btn btn-xs sm:btn-md" onClick={submit}
-                    >Search...</button>}
+                    >Search...</button>} 
             </form>
 
         </>

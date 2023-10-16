@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <div className='block lg:flex'>
-        <section className='flex ml-[64px] sm:ml-0 sm:p-4 '>
+        <section className='flex sm:ml-0 sm:p-4 '>
           <Header />
         </section>
         <section className='sm:flex sm:p-4 '>

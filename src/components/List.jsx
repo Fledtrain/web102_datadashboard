@@ -53,7 +53,7 @@ const List = () => {
 
     return (
         <>
-            <section className="ml-0 md:ml-40 xl:ml-96">
+            <section className="ml-0 md:ml-40 lg:ml-20 ">
                 <section className='mb-5'>
                     <div className='flex space-x-4'>
                         <Card city={city}>City</Card>
