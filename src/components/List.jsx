@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Card from "./Card"
+import Form from "./Form"
 
 const API_KEY = import.meta.env.VITE_BACKUP_API_KEY
 // List - a box container that stores a continuous group of information
@@ -47,43 +48,25 @@ const List = () => {
             setLoading(false);
         }
 
-        fetchWeather()
+        // fetchWeather()
     }, [form])
 
     return (
         <>
-            <section className="">
-                <section className='p-4'>
+            <section className="ml-0 md:ml-40 xl:ml-96">
+                <section className='mb-5'>
                     <div className='flex space-x-4'>
                         <Card city={city}>City</Card>
                         <Card country={country}>Country</Card>
                         <Card sunset={sunset}>Sunset</Card>
                     </div>
                 </section>
-                <section className="">
-                    <form>
-                        <input
-                            type="text"
-                            placeholder="Enter City..."
-                            className="input input-bordered w-full max-w-xs mr-2"
-                            onChange={(e) => search(e)} />
-                        <select
-                            className="select select-bordered w-full max-w-xs mr-2"
-                            onChange={(e) => setUnits(e.target.value)}>
-                            <option value="DEFAULT" disabled selected>What Unit Temperature?</option>
-                            <option value="M">Metric</option>
-                            <option value="S">Scientific</option>
-                            <option value="I">Fahrenheit</option>
-                        </select>
-                        {loading ?
-                            <p
-                                className="ml-6 loading loading-spinner text-info"
-                            >
-                            </p> :
-                            <button
-                                className="btn" onClick={submit}
-                            >Search</button>}
-                    </form>
+                <section className="text-center">
+                    <Form
+                        search={search}
+                        setUnits={setUnits}
+                        loading={loading}
+                        submit={submit} />
                     <div>
                         <table className="table mt-5">
                             <thead className="bg-neutral text-white text-center" >

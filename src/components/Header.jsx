@@ -5,8 +5,8 @@ import Nav from "./Nav"
 const Header = () => {
     return (
         <>
-            <section className="hero-overlay">
-                <h1 className="hero hero-content">WeatherReport 🤓</h1>
+            <section className="sm:hero-overlay">
+                <h1 className="sm:hero hero-content">WeatherReport 🤓</h1>
                 <Nav />
             </section>
         </>
