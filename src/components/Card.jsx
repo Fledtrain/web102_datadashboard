@@ -1,5 +1,12 @@
+/* eslint-disable react/prop-types */
 
-// Card - a box containers that hold pieces of information
+/** Card component - a box container that hold pieces of information
+ * @component
+ * @param {String} children - Text to be displayed in the card
+ * @param {String} city - City name
+ * @param {String} country - Country abbreviation
+ * @param {String} sunset - Sunset time
+ */
 const Card = ({ children, city, country, sunset }) => {
     return (
         <>
