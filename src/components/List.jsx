@@ -20,12 +20,12 @@ const List = () => {
     const today = new Date();
     const formattedDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     const [weeklyData, setWeeklyData] = useState(null);
-    const [startDate, setstartDate] = useState();
+    const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState(formattedDate);
-    const [toggle, setToggle] = useState(false);
+    const [selectedRadio, setSelectedRadio] = useState('Daily');
 
 
-    console.log(endDate)
+    // console.log(endDate)
     // console.log(data !== "")
     // console.log(data)
     // console.log(data?.city_name)
@@ -37,7 +37,7 @@ const List = () => {
     //     console.log(item.city_name, item.app_temp, item.uv, item.weather.description);
     // }));
 
-    /** Searches for city
+    /** Function that Searches for city
      * @param {string} e - event from the input field
      * @returns {string} city - city name
      */
@@ -45,14 +45,24 @@ const List = () => {
         e.preventDefault()
         setCity(e.target.value)
     }
-    /** Submits the form
+
+    /** Function that sets the end date
+     * @param {string} e - event from the input field
+     * @returns {string} endDate - end date 
+     */
+    const searchDate = (e) => {
+        e.preventDefault()
+        setStartDate(e.target.value)
+    }
+
+    /** Function that Submits the form
      * @param {string} e - event from the select field 
      * @returns {Array} updated form - city and units
      */
     const submit = (e) => {
         e.preventDefault()
         setLoading(true)
-        setForm([city, units])
+        setForm([city, units, startDate, endDate])
     }
 
     useEffect(() => {
@@ -68,19 +78,23 @@ const List = () => {
             setSunset(data?.data[0].sunset);
             setState(data?.data[0].state_code)
             setLoading(false);
+            console.log(data)
         }
 
-        const fetchWeatherDaily = async () => {
-            const res = await fetch(`https://api.weatherbit.io/v2.0/history/daily?&city=${form[0]}&start_date=2023-10-10&end_date=2023-10-17&key=${API_KEY}`);
+        /** Fetches weather data from the API
+         * @async
+         * @returns {Object} data - weather data
+         */
+        const fetchWeatherWeekly = async () => {
+            const res = await fetch(`https://api.weatherbit.io/v2.0/history/daily?&city=${form[0]}&units=${form[1]}&start_date=${form[2]}&end_date=${form[3]}&key=${API_KEY}`);
             const data = await res.json();
-            const length = data?.data.length - 1;
+            const length = data?.data.length - 1; // Get the last index of the data array which is the latest data
+            setWeeklyData(data)
             console.log(data)
-            console.log(data?.data[length])
             setLoading(false);
         }
-
         fetchWeather()
-        // fetchWeatherDaily()
+        // fetchWeatherWeekly()
     }, [form])
 
     return (
@@ -99,7 +113,10 @@ const List = () => {
                         setUnits={setUnits}
                         loading={loading}
                         submit={submit}
-                        setToggle={setToggle}
+                        selectedRadio={selectedRadio}
+                        setSelectedRadio={setSelectedRadio}
+                        endDate={endDate}
+                        searchDate={searchDate}
                     />
                     <div>
                         <table className="table sm:table-md mt-5">
@@ -110,10 +127,12 @@ const List = () => {
                                     <th>Feels like Temperature🔥</th>
                                     <th>Elevation Angle💨</th>
                                     <th>Weather🌌</th>
+                                    {/* <th>X - Coords</th>
+                                    <th>Y - Coords</th> */}
                                 </tr>
                             </thead>
                             <tbody>
-                                {data ?
+                                {data &&
                                     <tr className="text-center">
                                         <td>{state}</td>
                                         <td>{data?.station}</td>
@@ -124,13 +143,23 @@ const List = () => {
                                         </td>
                                         <td>{data?.elev_angle}</td>
                                         <td>{data?.weather.description}</td>
-                                    </tr> : <tr className="text-center">
-                                        <td>Fill</td>
-                                        <td>In {units} unit</td>
-                                        <td>Data </td>
-                                        <td>Above</td>
                                     </tr>
                                 }
+                                {weeklyData && weeklyData?.data.map((item) => {
+                                    return (
+                                        <tr className="text-center" key={item.name}>
+                                            <td>{weeklyData.state_code}</td>
+                                            <td>{weeklyData?.station_id}</td>
+                                            <td>{item?.temp}
+                                                {units === "M" && <> Celsius</>}
+                                                {units === "I" && <> Fahrenheit</>}
+                                                {units === "S" && <> Kelvin</>}
+                                            </td>
+                                            <td>{weeklyData?.lat}</td>
+                                            <td>{weeklyData?.lon}</td>
+                                        </tr>
+                                    )
+                                })}
                             </tbody>
                         </table>
                     </div>
