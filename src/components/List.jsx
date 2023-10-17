@@ -16,6 +16,16 @@ const List = () => {
     const [units, setUnits] = useState("M")
     const [sunset, setSunset] = useState('');
 
+    // For Weekly weather data
+    const today = new Date();
+    const formattedDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    const [weeklyData, setWeeklyData] = useState(null);
+    const [startDate, setstartDate] = useState();
+    const [endDate, setEndDate] = useState(formattedDate);
+    const [toggle, setToggle] = useState(false);
+
+
+    console.log(endDate)
     // console.log(data !== "")
     // console.log(data)
     // console.log(data?.city_name)
@@ -60,7 +70,17 @@ const List = () => {
             setLoading(false);
         }
 
+        const fetchWeatherDaily = async () => {
+            const res = await fetch(`https://api.weatherbit.io/v2.0/history/daily?&city=${form[0]}&start_date=2023-10-10&end_date=2023-10-17&key=${API_KEY}`);
+            const data = await res.json();
+            const length = data?.data.length - 1;
+            console.log(data)
+            console.log(data?.data[length])
+            setLoading(false);
+        }
+
         fetchWeather()
+        // fetchWeatherDaily()
     }, [form])
 
     return (
@@ -78,7 +98,9 @@ const List = () => {
                         search={search}
                         setUnits={setUnits}
                         loading={loading}
-                        submit={submit} />
+                        submit={submit}
+                        setToggle={setToggle}
+                    />
                     <div>
                         <table className="table sm:table-md mt-5">
                             <thead className="bg-neutral text-white text-center" >
