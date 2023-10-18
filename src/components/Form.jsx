@@ -24,7 +24,7 @@ const Form = (
     return (
         <>
             <form>
-                {/* <div className="form-control flex flex-row justify-center mb-2">
+                <div className="form-control flex flex-row justify-center mb-2">
                     <span className="label-text">Daily Data</span>
                     <input
                         type="radio"
@@ -43,7 +43,7 @@ const Form = (
                         value="Weekly"
                         onChange={() => setSelectedRadio('Weekly')}
                     />
-                </div> */}
+                </div>
                 {selectedRadio === 'Daily' &&
                     <>
                         <input

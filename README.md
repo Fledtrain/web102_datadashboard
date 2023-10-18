@@ -4,7 +4,7 @@ Submitted by: Joey Whitehead
 
 This web app: WeatherReporter App utilizes the https://www.weatherbit.io/ API to fetch weather reports throughout the global and display them in a beautiful table. Just enter the city you want and the app will fetch the weather report for you. You can filter the data by city, unit temperature!
 
-Time spent: 8 hours spent in total
+Time spent: 13 hours spent in total
 
 ## Required Features
 

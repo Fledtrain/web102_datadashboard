@@ -24,6 +24,9 @@ const List = () => {
     const [endDate, setEndDate] = useState(formattedDate);
     const [selectedRadio, setSelectedRadio] = useState('Daily');
 
+    // API call has been made
+    const [apiCallMade, setApiCallMade] = useState(false);
+
 
     // console.log(endDate)
     // console.log(data !== "")
@@ -63,40 +66,59 @@ const List = () => {
         e.preventDefault()
         setLoading(true)
         setForm([city, units, startDate, endDate])
+
+        setApiCallMade(false);
     }
 
     useEffect(() => {
-        /** Fetches weather data from the API
+        /** Fetches daily weather data from the API
          * @async
          * @returns {Object} data - weather data
          */
         const fetchWeather = async () => {
-            const res = await fetch(`https://api.weatherbit.io/v2.0/current?&city=${form[0]}&units=${form[1]}&key=${API_KEY}`)
+            const res = await fetch(
+                `https://api.weatherbit.io/v2.0/current?&city=${form[0]}&units=${form[1]}&key=${API_KEY}`
+            );
             const data = await res.json();
             setData(data?.data[0]);
             setCountry(data?.data[0].country_code);
             setSunset(data?.data[0].sunset);
-            setState(data?.data[0].state_code)
+            setState(data?.data[0].state_code);
             setLoading(false);
-            console.log(data)
-        }
+            console.log(data);
+            setWeeklyData(null);
+            // Set the flag to true after the API call is made
+            setApiCallMade(true);
+        };
 
-        /** Fetches weather data from the API
+        if (selectedRadio === "Daily" && !apiCallMade) {
+            fetchWeather();
+        }
+    }, [form, selectedRadio, apiCallMade]);
+
+    useEffect(() => {
+        /** Fetches weekly weather data from the API
          * @async
          * @returns {Object} data - weather data
          */
         const fetchWeatherWeekly = async () => {
-            const res = await fetch(`https://api.weatherbit.io/v2.0/history/daily?&city=${form[0]}&units=${form[1]}&start_date=${form[2]}&end_date=${form[3]}&key=${API_KEY}`);
+            const res = await fetch(
+                `https://api.weatherbit.io/v2.0/history/daily?&city=${form[0]}&units=${form[1]}&start_date=${form[2]}&end_date=${form[3]}&key=${API_KEY}`
+            );
             const data = await res.json();
-            const length = data?.data.length - 1; // Get the last index of the data array which is the latest data
-            setWeeklyData(data)
-            console.log(data)
+            const length = data?.data.length - 1; // Get the last index of the data array, which is the latest data
+            setWeeklyData(data);
+            console.log(data);
+            setData(null)
             setLoading(false);
-        }
-        fetchWeather()
-        // fetchWeatherWeekly()
-    }, [form])
+            // Set the flag to true after the API call is made
+            setApiCallMade(true);
+        };
 
+        if (selectedRadio === "Weekly" && !apiCallMade) {
+            fetchWeatherWeekly();
+        }
+    }, [form, selectedRadio, apiCallMade]);
     return (
         <>
             <section className="ml-0 md:ml-40 lg:ml-20 ">
@@ -125,15 +147,15 @@ const List = () => {
                                     <th>State 🗿</th>
                                     <th>Station⌛</th>
                                     <th>Feels like Temperature🔥</th>
-                                    <th>Elevation Angle💨</th>
-                                    <th>Weather🌌</th>
-                                    {/* <th>X - Coords</th>
-                                    <th>Y - Coords</th> */}
+                                    <th>UV Level💨</th>
+                                    <th>Cloudy Percentage ☁️</th>
+                                    <th>X - Coords</th>
+                                    <th>Y - Coords</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {data &&
-                                    <tr className="text-center">
+                                    <tr className="text-center" key={state}>
                                         <td>{state}</td>
                                         <td>{data?.station}</td>
                                         <td>{data?.app_temp}
@@ -141,8 +163,10 @@ const List = () => {
                                             {units === "I" && <> Fahrenheit</>}
                                             {units === "S" && <> Kelvin</>}
                                         </td>
-                                        <td>{data?.elev_angle}</td>
-                                        <td>{data?.weather.description}</td>
+                                        <td>{data?.uv}</td>
+                                        <td>{data?.clouds}%</td>
+                                        <td>{data?.lon}</td>
+                                        <td>{data?.lat}</td>
                                     </tr>
                                 }
                                 {weeklyData && weeklyData?.data.map((item) => {
@@ -155,6 +179,8 @@ const List = () => {
                                                 {units === "I" && <> Fahrenheit</>}
                                                 {units === "S" && <> Kelvin</>}
                                             </td>
+                                            <td>{item?.max_uv}</td>
+                                            <td>{item?.clouds}%</td>
                                             <td>{weeklyData?.lat}</td>
                                             <td>{weeklyData?.lon}</td>
                                         </tr>
