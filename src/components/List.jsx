@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
 import Card from "./Card"
 import Form from "./Form"
+import { FaCloud, FaRadiationAlt, FaTemperatureHigh } from 'react-icons/fa'
+import { RiBaseStationFill } from 'react-icons/ri'
+
 
 const API_KEY = import.meta.env.VITE_BACKUP_API_KEY
 // List - a box container that stores a continuous group of information
@@ -145,10 +148,20 @@ const List = () => {
                             <thead className="bg-neutral text-white text-center" >
                                 <tr>
                                     <th>State 🗿</th>
-                                    <th>Station⌛</th>
-                                    <th>Feels like Temperature🔥</th>
-                                    <th>UV Level💨</th>
-                                    <th>Cloudy Percentage ☁️</th>
+                                    <th>Station
+                                        <RiBaseStationFill
+                                            className="ml-1 mb-1 inline-block" ></RiBaseStationFill>
+                                    </th>
+                                    <th>Temperature
+                                        <FaTemperatureHigh
+                                            className="ml-1 mb-1 inline-block" ></FaTemperatureHigh></th>
+                                    <th>UV Level
+                                        <FaRadiationAlt
+                                            className="ml-1 mb-1 inline-block" ></FaRadiationAlt>
+                                    </th>
+                                    <th>Cloudy Percentage
+                                        <FaCloud
+                                            className="ml-1 mb-1 inline-block" ></FaCloud></th>
                                     <th>X - Coords</th>
                                     <th>Y - Coords</th>
                                 </tr>
