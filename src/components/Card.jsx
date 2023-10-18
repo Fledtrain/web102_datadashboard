@@ -13,7 +13,7 @@ const Card = ({ children, city, country, sunset }) => {
             <section
                 className="card ml-8 md:ml-0 mt-4 md:mt-0 w-24 md:w-36 lg:w-64 xl:w-80 bg-neutral text-neutral-content">
                 <div className="card-body items-center">
-                    <h2 className="card-title">{children}</h2>
+                    <h2 className="card-title text-white">{children}</h2>
                     <p>{city}{country}{sunset}</p>
                 </div>
             </section>

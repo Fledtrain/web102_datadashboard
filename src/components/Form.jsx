@@ -96,7 +96,7 @@ const Form = (
                     >
                     </p> :
                     <button
-                        className="btn btn-xs sm:btn-md" onClick={submit}
+                        className="btn btn-xs sm:btn-md text-white" onClick={submit}
                     >Search...</button>}
             </form>
         </>
