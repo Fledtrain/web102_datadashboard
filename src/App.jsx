@@ -1,19 +1,16 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import Header from './components/Header'
-import List from './components/List'
+import Home from './routes/Home'
 
 function App() {
 
   return (
     <>
-      <div className='block lg:flex'>
-        <section className='flex sm:ml-0 sm:p-4 '>
-          <Header />
-        </section>
-        <section className='sm:flex sm:p-4 '>
-          <List />
-        </section>
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
