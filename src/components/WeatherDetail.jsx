@@ -10,7 +10,6 @@ const WeatherDetail = () => {
 
     // Fetch data from API
     useEffect(() => {
-
         const fetchWeather = async () => {
             const res = await fetch(
                 `https://api.weatherbit.io/v2.0/current?&city=${params.city}&key=${API_KEY}`
@@ -22,8 +21,6 @@ const WeatherDetail = () => {
             fetchWeather();
         }
     }, [])
-
-    console.log(fullDetails)
     return (
         <>
             <section className="card bg-neutral text-neutral-content">
