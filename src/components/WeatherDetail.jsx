@@ -10,26 +10,34 @@ const WeatherDetail = () => {
 
     // Fetch data from API
     useEffect(() => {
-        try {
-            const fetchWeather = async () => {
-                const res = await fetch(
-                    `https://api.weatherbit.io/v2.0/alerts?&city=${params.city}&key=${API_KEY}`
-                );
-                const data = await res.json();
-                setFullDetails(data);
-            }
+
+        const fetchWeather = async () => {
+            const res = await fetch(
+                `https://api.weatherbit.io/v2.0/current?&city=${params.city}&key=${API_KEY}`
+            );
+            const data = await res.json();
+            setFullDetails(data?.data[0]);
         }
-        catch (error) {
-            console.error(error)
+        if (params.city) {
+            fetchWeather();
         }
-        // fetchWeather();
-    }, [fullDetails, params.city])
+    }, [])
 
     console.log(fullDetails)
     return (
         <>
-            <div>{params.city}</div>
-            <div>{params.date}</div>
+            <section className="card bg-neutral text-neutral-content">
+                <div className="card-body ">
+                    <p>City: {params.city}</p>
+                    <p>Date: {params.date}</p>
+                    <p>Weather: {fullDetails?.weather.description}</p>
+                    <p>Elevation Angle: {fullDetails?.elev_angle}</p>
+                    <p>Wind Speed: {fullDetails?.wind_spd}</p>
+                    <p>Visibility: {fullDetails?.vis}%</p>
+                    <p>Humidity: {fullDetails?.rh}%</p>
+                    <p>Dew Point: {fullDetails?.dewpt}%</p>
+                </div>
+            </section>
         </>
     )
 }
