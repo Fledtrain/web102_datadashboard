@@ -4,6 +4,7 @@ import Form from "./Form"
 import { FaCloud, FaLink, FaRadiationAlt, FaTemperatureHigh } from 'react-icons/fa'
 import { RiBaseStationFill } from 'react-icons/ri'
 import { Link } from "react-router-dom"
+import WeatherChart from "./WeatherChart"
 
 
 const API_KEY = import.meta.env.VITE_BACKUP_API_KEY
@@ -199,10 +200,10 @@ const List = () => {
                                     return (
                                         <tr className="text-center" key={item.name}>
                                             <td>
-                                            <Link to={`/weather/${city}/${item?.datetime}`}>
-                                                <FaLink
-                                                    className="ml-1 mb-1 inline-block" ></FaLink>
-                                            </Link>
+                                                <Link to={`/weather/${city}/${item?.datetime}`}>
+                                                    <FaLink
+                                                        className="ml-1 mb-1 inline-block" ></FaLink>
+                                                </Link>
                                             </td>
                                             <td>{weeklyData.state_code}</td>
                                             <td>{weeklyData?.station_id}</td>
@@ -220,6 +221,10 @@ const List = () => {
                                 })}
                             </tbody>
                         </table>
+                        {
+                            weeklyData &&
+                            <WeatherChart weeklyData={weeklyData} />
+                        }
                     </div>
                 </section>
             </section >
