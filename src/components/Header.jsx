@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <>
             <section className="sm:hero-overlay">
-                <h1 className="sm:hero hero-content">WeatherReport 🤓</h1>
+                <h1 className="sm:hero hero-content text-white">WeatherReport 🤓</h1>
                 <Nav />
             </section>
         </>

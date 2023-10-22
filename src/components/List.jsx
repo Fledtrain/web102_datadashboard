@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import Card from "./Card"
 import Form from "./Form"
-import { FaCloud, FaRadiationAlt, FaTemperatureHigh } from 'react-icons/fa'
+import { FaCloud, FaLink, FaRadiationAlt, FaTemperatureHigh } from 'react-icons/fa'
 import { RiBaseStationFill } from 'react-icons/ri'
+import { Link } from "react-router-dom"
 
 
 const API_KEY = import.meta.env.VITE_BACKUP_API_KEY
@@ -122,6 +123,8 @@ const List = () => {
             fetchWeatherWeekly();
         }
     }, [form, selectedRadio, apiCallMade]);
+
+    console.log(weeklyData)
     return (
         <>
             <section className="ml-0 md:ml-40 lg:ml-20 ">
@@ -147,6 +150,10 @@ const List = () => {
                         <table className="table sm:table-md mt-5">
                             <thead className="bg-neutral text-white text-center" >
                                 <tr>
+                                    <th>Link
+                                        <FaLink
+                                            className="ml-1 mb-1 inline-block" ></FaLink>
+                                    </th>
                                     <th>State 🗿</th>
                                     <th>Station
                                         <RiBaseStationFill
@@ -169,6 +176,12 @@ const List = () => {
                             <tbody>
                                 {data &&
                                     <tr className="text-center" key={state}>
+                                        <td>
+                                            <Link to={`/weather/${city}/${data?.datetime}`}>
+                                                <FaLink
+                                                    className="ml-1 mb-1 inline-block" ></FaLink>
+                                            </Link>
+                                        </td>
                                         <td>{state}</td>
                                         <td>{data?.station}</td>
                                         <td>{data?.app_temp}
@@ -185,6 +198,12 @@ const List = () => {
                                 {weeklyData && weeklyData?.data.map((item) => {
                                     return (
                                         <tr className="text-center" key={item.name}>
+                                            <td>
+                                            <Link to={`/weather/${city}/${item?.datetime}`}>
+                                                <FaLink
+                                                    className="ml-1 mb-1 inline-block" ></FaLink>
+                                            </Link>
+                                            </td>
                                             <td>{weeklyData.state_code}</td>
                                             <td>{weeklyData?.station_id}</td>
                                             <td>{item?.temp}

@@ -8,7 +8,7 @@ const Nav = () => {
                 <Link to="/">
                     <button className="btn btn-ghost btn-wide flex sm:ml-2 md:ml-0">🛖Dashboard</button>
                 </Link>
-                <Link to="/search">
+                <Link to="/">
                     <button className="btn btn-ghost btn-wide flex">🔍Search</button>
                 </Link>
                 <Link to="/about">

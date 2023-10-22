@@ -64,15 +64,15 @@ Submitted by: Joey Whitehead
 
 This web app: WeatherReporter App V2 is a continuation of the WeatherReporter App. 
 
-Time spent: **X** hours spent in total
+Time spent: 2 hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
 - [ ] **The app includes at least one unique chart developed using the fetched data that tell an interesting story**
-- [ ] **Clicking on an item in the list view displays more details about it**
-- [ ] **Clicking on an item has a direct, unique link to that item's detail view page**
+- [x] **Clicking on an item in the list view displays more details about it**
+- [x] **Clicking on an item has a direct, unique link to that item's detail view page**
 
 The following **optional** features are implemented:
 
