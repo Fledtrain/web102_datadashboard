@@ -1,17 +1,15 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, BarChart, Bar } from 'recharts';
 
 const WeatherChart = ({ weeklyData }) => {
     const [toggle, setToggle] = useState(false)
 
-
     const data = weeklyData.data.map((item, index) => ({
         name: item.datetime,
         temp: item.temp, // Assuming your data object has a "temp" property
         clouds: item.clouds,     // Assuming your data object has a "uv" property
     }));
-    console.log(data)
-
 
     return (
         <>
