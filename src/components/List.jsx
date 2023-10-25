@@ -8,7 +8,10 @@ import WeatherChart from "./WeatherChart"
 
 
 const API_KEY = import.meta.env.VITE_BACKUP_API_KEY
-// List - a box container that stores a continuous group of information
+
+/** List component that displays the weather data
+ * @returns {JSX.Element} List - a box container that stores a continuous group of information
+ */
 const List = () => {
     const [form, setForm] = useState([])
     const [data, setData] = useState(null);
@@ -37,7 +40,6 @@ const List = () => {
     // console.log(data?.uv)
     // console.log(data?.weather.description)
 
-    
     /** Function that Searches for city
      * @param {string} e - event from the input field
      * @returns {string} city - city name
@@ -49,7 +51,7 @@ const List = () => {
 
     /** Function that sets the end date
      * @param {string} e - event from the input field
-     * @returns {string} endDate - end date 
+     * @returns {string} endDate - `YYYY-MM-DD` format
      */
     const searchDate = (e) => {
         e.preventDefault()
@@ -58,7 +60,7 @@ const List = () => {
 
     /** Function that Submits the form
      * @param {string} e - event from the select field 
-     * @returns {Array} updated form - city and units
+     * @returns {Array} updated form - city, units, startDate, endDate
      */
     const submit = (e) => {
         e.preventDefault()
