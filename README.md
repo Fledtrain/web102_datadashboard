@@ -79,21 +79,17 @@ The following **optional** features are implemented:
 - [x] The site's customized dashboard contains more content that explains what is interesting about the data
 - [x] The site allows users to toggle between different data visualizations
 
-The following **additional** features are implemented:
-
-- [ ] List anything else that you added to improve the site's functionality!
-
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='./public/project6.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with LICEcap
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+I had trouble with figuring out how to parse through the data for the charts but I figured it out by reading the recharts documentation.
 
 ## License
 
