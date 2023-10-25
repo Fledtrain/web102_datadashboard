@@ -1,15 +1,19 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom"
-
 const API_KEY = import.meta.env.VITE_BACKUP_API_KEY
 
+/** Component for the weather detail
+ * @returns More detailed weather information
+ */
 const WeatherDetail = () => {
     const params = useParams();
     const [fullDetails, setFullDetails] = useState(null);
 
-    // Fetch data from API
     useEffect(() => {
+        /** Fetches the weather data from the API
+         * @async
+         */
         const fetchWeather = async () => {
             const res = await fetch(
                 `https://api.weatherbit.io/v2.0/current?&city=${params.city}&key=${API_KEY}`
