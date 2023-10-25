@@ -23,7 +23,7 @@ const Form = (
 ) => {
     return (
         <>
-            <form>
+            <form data-netlify="true" name="Weather Submissions" >
                 <div className="form-control flex flex-row justify-center mb-2">
                     <span className="label-text">Daily Data</span>
                     <input
