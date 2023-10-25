@@ -95,7 +95,7 @@ const Form = (
                         className="sm:ml-6 loading loading-xs sm:loading-md loading-spinner text-info"
                     >
                     </p> :
-                    <button
+                    <button type="submit"
                         className="btn btn-xs sm:btn-md text-white" onClick={submit}
                     >Search...</button>}
             </form>
