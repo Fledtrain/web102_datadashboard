@@ -2,6 +2,11 @@
 import { useState } from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, BarChart, Bar } from 'recharts';
 
+
+/** Component for the weather chart
+ * @param {Array} weeklyData - data from the API call 
+ * @returns a chart with the weather data
+ */
 const WeatherChart = ({ weeklyData }) => {
     const [toggle, setToggle] = useState(false)
 

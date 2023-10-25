@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 
-// NavBar - a list of choices to navigate on the page
+/** 
+ * @returns a list of choices to navigate on the page
+ */
 const Nav = () => {
     return (
         <>
