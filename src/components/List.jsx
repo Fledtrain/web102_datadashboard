@@ -7,7 +7,8 @@ import { Link } from "react-router-dom"
 import WeatherChart from "./WeatherChart"
 
 
-const API_KEY = import.meta.env.VITE_BACKUP_API_KEY
+// const API_KEY = import.meta.env.VITE_BACKUP_API_KEY
+const API_KEY = import.meta.env.VITE_API_KEY
 
 /** List component that displays the weather data
  * @returns {JSX.Element} List - a box container that stores a continuous group of information
