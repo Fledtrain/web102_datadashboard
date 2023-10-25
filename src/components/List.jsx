@@ -32,19 +32,12 @@ const List = () => {
     // API call has been made
     const [apiCallMade, setApiCallMade] = useState(false);
 
-
-    // console.log(endDate)
-    // console.log(data !== "")
-    // console.log(data)
     // console.log(data?.city_name)
     // console.log(data?.app_temp)
     // console.log(data?.uv)
     // console.log(data?.weather.description)
-    // if (data) { console.log(JSON.stringify(data.city_name)) }
-    // console.log(Object.values(data)?.map((item) => {
-    //     console.log(item.city_name, item.app_temp, item.uv, item.weather.description);
-    // }));
 
+    
     /** Function that Searches for city
      * @param {string} e - event from the input field
      * @returns {string} city - city name
@@ -111,7 +104,6 @@ const List = () => {
                 `https://api.weatherbit.io/v2.0/history/daily?&city=${form[0]}&units=${form[1]}&start_date=${form[2]}&end_date=${form[3]}&key=${API_KEY}`
             );
             const data = await res.json();
-            const length = data?.data.length - 1; // Get the last index of the data array, which is the latest data
             setWeeklyData(data);
             console.log(data);
             setData(null)
