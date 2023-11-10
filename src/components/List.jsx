@@ -6,7 +6,6 @@ import { RiBaseStationFill } from 'react-icons/ri'
 import { Link } from "react-router-dom"
 import WeatherChart from "./WeatherChart"
 
-
 const API_KEY = import.meta.env.VITE_BACKUP_API_KEY2
 // const API_KEY = import.meta.env.VITE_BACKUP_API_KEY
 // const API_KEY = import.meta.env.VITE_API_KEY
@@ -38,11 +37,6 @@ const List = () => {
 
     // API call has been made
     const [apiCallMade, setApiCallMade] = useState(false);
-
-    // console.log(data?.city_name)
-    // console.log(data?.app_temp)
-    // console.log(data?.uv)
-    // console.log(data?.weather.description)
 
     /** Function that Searches for city
      * @param {string} e - event from the input field
