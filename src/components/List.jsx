@@ -20,11 +20,13 @@ const List = () => {
     const [loading, setLoading] = useState(false);
 
     // For parameters
-    const [city, setCity] = useState("Raleigh");
-    const [state, setState] = useState("NC");
-    const [country, setCountry] = useState("US");
-    const [units, setUnits] = useState("M")
-    const [sunset, setSunset] = useState('');
+    const [parameters, setParameters] = useState({
+        city: "Raleigh",
+        state: "NC",
+        country: "US",
+        units: "M",
+        sunset: ""
+    })
 
     // For Weekly weather data
     const today = new Date();
@@ -48,7 +50,7 @@ const List = () => {
      */
     const search = (e) => {
         e.preventDefault()
-        setCity(e.target.value)
+        setParameters({ ...parameters, city: e.target.value })
     }
 
     /** Function that sets the end date
@@ -67,7 +69,7 @@ const List = () => {
     const submit = (e) => {
         e.preventDefault()
         setLoading(true)
-        setForm([city, units, startDate, endDate])
+        setForm([parameters.city, parameters.units, startDate, endDate])
 
         setApiCallMade(false);
     }
@@ -83,11 +85,10 @@ const List = () => {
             );
             const data = await res.json();
             setData(data?.data[0]);
-            setCountry(data?.data[0].country_code);
-            setSunset(data?.data[0].sunset);
-            setState(data?.data[0].state_code);
+            setParameters({ ...parameters, country: data?.data[0].country_code });
+            setParameters({ ...parameters, sunset: data?.data[0].sunset });
+            setParameters({ ...parameters, state: data?.data[0].state_code });
             setLoading(false);
-            console.log(data);
             setWeeklyData(null);
             // Set the flag to true after the API call is made
             setApiCallMade(true);
@@ -127,15 +128,16 @@ const List = () => {
             <section className="ml-0 md:ml-40 lg:ml-20 ">
                 <section className='mb-5'>
                     <div className='flex space-x-4'>
-                        <Card city={city}>City</Card>
-                        <Card country={country}>Country</Card>
-                        <Card sunset={sunset}>Sunset</Card>
+                        <Card city={parameters.city}>City</Card>
+                        <Card country={parameters.country}>Country</Card>
+                        <Card sunset={parameters.sunset}>Sunset</Card>
                     </div>
                 </section>
                 <section className="text-center">
                     <Form
                         search={search}
-                        setUnits={setUnits}
+                        setParameters={setParameters}
+                        parameters={parameters}
                         loading={loading}
                         submit={submit}
                         selectedRadio={selectedRadio}
@@ -172,19 +174,19 @@ const List = () => {
                             </thead>
                             <tbody>
                                 {data &&
-                                    <tr className="text-center" key={state}>
+                                    <tr className="text-center" key={parameters.state}>
                                         <td>
-                                            <Link to={`/weather/${city}/${data?.datetime}`}>
+                                            <Link to={`/weather/${parameters.city}/${data?.datetime}`}>
                                                 <FaLink
                                                     className="ml-1 mb-1 inline-block" ></FaLink>
                                             </Link>
                                         </td>
-                                        <td>{state}</td>
+                                        <td>{parameters.state}</td>
                                         <td>{data?.station}</td>
                                         <td>{data?.app_temp}
-                                            {units === "M" && <> Celsius</>}
-                                            {units === "I" && <> Fahrenheit</>}
-                                            {units === "S" && <> Kelvin</>}
+                                            {parameters.units === "M" && <> Celsius</>}
+                                            {parameters.units === "I" && <> Fahrenheit</>}
+                                            {parameters.units === "S" && <> Kelvin</>}
                                         </td>
                                         <td>{data?.uv}</td>
                                         <td>{data?.clouds}%</td>
@@ -196,7 +198,7 @@ const List = () => {
                                     return (
                                         <tr className="text-center" key={item.name}>
                                             <td>
-                                                <Link to={`/weather/${city}/${item?.datetime}`}>
+                                                <Link to={`/weather/${parameters.city}/${item?.datetime}`}>
                                                     <FaLink
                                                         className="ml-1 mb-1 inline-block" ></FaLink>
                                                 </Link>
@@ -204,9 +206,9 @@ const List = () => {
                                             <td>{weeklyData.state_code}</td>
                                             <td>{weeklyData?.station_id}</td>
                                             <td>{item?.temp}
-                                                {units === "M" && <> Celsius</>}
-                                                {units === "I" && <> Fahrenheit</>}
-                                                {units === "S" && <> Kelvin</>}
+                                                {parameters.units === "M" && <> Celsius</>}
+                                                {parameters.units === "I" && <> Fahrenheit</>}
+                                                {parameters.units === "S" && <> Kelvin</>}
                                             </td>
                                             <td>{item?.max_uv}</td>
                                             <td>{item?.clouds}%</td>

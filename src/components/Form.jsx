@@ -2,7 +2,7 @@
 
 /** Form Component to search city and set Temperature Unit
  * @param {function} search - function to search city
- * @param {string} setUnits - state to set Temperature Unit
+ * @param {string} setParameters - state to set Temperature Unit
  * @param {string} laoding  - state to set loading
  * @param {string} submit - function to submit form
  * @param {string} selectedRadio - state to set selected radio button
@@ -12,13 +12,14 @@
  */
 const Form = (
     { search,
-        setUnits,
+        setParameters,
         loading,
         submit,
         selectedRadio,
         setSelectedRadio,
         endDate,
         searchDate,
+        parameters
     }
 ) => {
     return (
@@ -53,7 +54,7 @@ const Form = (
                             onChange={(e) => search(e)} />
                         <select
                             className="select select-bordered select-xs sm:select-md max-w-xs sm:mr-2"
-                            onChange={(e) => setUnits(e.target.value)}>
+                            onChange={(e) => setParameters({ ...parameters, units: e.target.value })}>
                             <option value="DEFAULT" disabled selected>What Unit Temperature?</option>
                             <option value="M">Metric</option>
                             <option value="S">Scientific</option>
@@ -82,7 +83,7 @@ const Form = (
                         />
                         <select
                             className="select select-bordered select-xs sm:select-md max-w-xs sm:mr-2"
-                            onChange={(e) => setUnits(e.target.value)}>
+                            onChange={(e) => setParameters({ ...parameters, units: e.target.value })}>
                             <option value="DEFAULT" disabled selected>What Unit Temperature?</option>
                             <option value="M">Metric</option>
                             <option value="S">Scientific</option>
