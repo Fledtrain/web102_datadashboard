@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom"
-const API_KEY = import.meta.env.VITE_BACKUP_API_KEY
+const API_KEY = import.meta.env.VITE_BACKUP_API_KEY2
 
 /** Component for the weather detail
  * @returns More detailed weather information

@@ -24,7 +24,7 @@ const List = () => {
         state: "NC",
         country: "US",
         units: "M",
-        sunset: ""
+        Precipit: "0"
     })
 
     // For Weekly weather data
@@ -80,7 +80,7 @@ const List = () => {
             const data = await res.json();
             setData(data?.data[0]);
             setParameters({ ...parameters, country: data?.data[0].country_code });
-            setParameters({ ...parameters, sunset: data?.data[0].sunset });
+            setParameters({ ...parameters, Precipit: data?.data[0].precip });
             setParameters({ ...parameters, state: data?.data[0].state_code });
             setLoading(false);
             setWeeklyData(null);
@@ -105,6 +105,7 @@ const List = () => {
             const data = await res.json();
             setWeeklyData(data);
             console.log(data);
+            setParameters({...parameters, precip: data?.data[0].precip})
             setData(null)
             setLoading(false);
             // Set the flag to true after the API call is made
@@ -124,7 +125,7 @@ const List = () => {
                     <div className='flex space-x-4'>
                         <Card city={parameters.city}>City</Card>
                         <Card country={parameters.country}>Country</Card>
-                        <Card sunset={parameters.sunset}>Sunset</Card>
+                        <Card precip={parameters.Precipit}>Precipit</Card>
                     </div>
                 </section>
                 <section className="text-center">
